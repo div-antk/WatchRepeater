@@ -10,23 +10,26 @@ import Foundation
 import AVFoundation
 
 class InterfaceController: WKInterfaceController {
-
-    private var isPlaying = false
-
+  
+  var lowGongPlayer:AVAudioPlayer!
+  var highGongPlayer:AVAudioPlayer!
+  
+  private var isPlaying = false
+  
   @IBOutlet weak var button: WKInterfaceButton!
   
   override func awake(withContext context: Any?) {
-        // Configure interface objects here.
-    }
+    // Configure interface objects here.
+  }
+  
+  override func willActivate() {
     
-    override func willActivate() {
-      
-    }
-    
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-    }
-
+  }
+  
+  override func didDeactivate() {
+    // This method is called when watch view controller is no longer visible
+  }
+  
   @IBAction func actionButton() {
     if isPlaying { return }
     isPlaying = true
@@ -48,15 +51,15 @@ class InterfaceController: WKInterfaceController {
       let minute = time.minute! % 15
       
       // 低音ゴング
-//      let lowGong:SystemSoundID = 1054
+      //      let lowGong:SystemSoundID = 1054
       // 高音ゴング
-//      let highGong:SystemSoundID = 1013
+      //      let highGong:SystemSoundID = 1013
       
       // 第一ゴング
       for _ in 0 ..< hour {
         print("dong")
-//        AudioServicesPlaySystemSound(lowGong)
-        
+        //        AudioServicesPlaySystemSound(lowGong)
+        self.lowGong()
         // 0.5秒待つ
         Thread.sleep(forTimeInterval: 0.5)
       }
@@ -69,10 +72,12 @@ class InterfaceController: WKInterfaceController {
       // 第二ゴング
       for _ in 0 ..< quarter {
         print("ding-dong")
-//        AudioServicesPlaySystemSound(highGong)
+        self.highGong()
+        //        AudioServicesPlaySystemSound(highGong)
         // 0.4秒待つ
         Thread.sleep(forTimeInterval: 0.4)
-//        AudioServicesPlaySystemSound(lowGong)
+        self.lowGong()
+        //        AudioServicesPlaySystemSound(lowGong)
         
         // 0.5秒待つ
         Thread.sleep(forTimeInterval: 0.5)
@@ -86,7 +91,8 @@ class InterfaceController: WKInterfaceController {
       // 第三ゴング
       for _ in 0 ..< minute {
         print("ding")
-//        AudioServicesPlaySystemSound(highGong)
+        self.lowGong()
+        //        AudioServicesPlaySystemSound(highGong)
         
         // 0.5秒待つ
         Thread.sleep(forTimeInterval: 0.5)
@@ -95,25 +101,25 @@ class InterfaceController: WKInterfaceController {
       self.isPlaying = false
     }
   }
-}
-
-class SoundPlayer: ObservableObject {
-  var audioPlayer = AVAudioPlayer()
   
-  init() {
-    let lowGong = Bundle.main.path(forResource: "low", ofType: "wave")
+  func lowGong() {
+    
+    let lowGong = Bundle.main.url(forResource: "low", withExtension: "wave")
     do {
-      audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: lowGong!))
-    }
-    catch {
+      lowGongPlayer = try AVAudioPlayer(contentsOf: lowGong!)
+      lowGongPlayer?.play()
+    } catch {
       print("error")
     }
+  }
+  
+  func highGong() {
     
-    let highGong = Bundle.main.path(forResource: "high", ofType: "wave")
+    let highGong = Bundle.main.url(forResource: "high", withExtension: "wave")
     do {
-      audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: highGong!))
-    }
-    catch {
+      highGongPlayer = try AVAudioPlayer(contentsOf: highGong!)
+      highGongPlayer?.play()
+    } catch {
       print("error")
     }
   }
