@@ -16,6 +16,8 @@
 		3B1C60B325A881E3008BAF90 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C60B225A881E3008BAF90 /* NotificationController.swift */; };
 		3B1C60B525A881E3008BAF90 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C60B425A881E3008BAF90 /* ComplicationController.swift */; };
 		3B1C60B725A881E5008BAF90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B1C60B625A881E5008BAF90 /* Assets.xcassets */; };
+		3B1C60CD25A988FD008BAF90 /* high.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B1C60CB25A988FC008BAF90 /* high.wav */; };
+		3B1C60CE25A988FD008BAF90 /* row.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3B1C60CC25A988FD008BAF90 /* row.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		3B1C60B625A881E5008BAF90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B1C60B825A881E5008BAF90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B1C60B925A881E5008BAF90 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		3B1C60CB25A988FC008BAF90 /* high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = high.wav; sourceTree = "<group>"; };
+		3B1C60CC25A988FD008BAF90 /* row.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = row.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				3B1C60AE25A881E3008BAF90 /* InterfaceController.swift */,
+				3B1C60CA25A988DB008BAF90 /* Sound */,
 				3B1C60B025A881E3008BAF90 /* ExtensionDelegate.swift */,
 				3B1C60B225A881E3008BAF90 /* NotificationController.swift */,
 				3B1C60B425A881E3008BAF90 /* ComplicationController.swift */,
@@ -128,6 +133,15 @@
 				3B1C60B925A881E5008BAF90 /* PushNotificationPayload.apns */,
 			);
 			path = "WatchRepeater WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		3B1C60CA25A988DB008BAF90 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				3B1C60CB25A988FC008BAF90 /* high.wav */,
+				3B1C60CC25A988FD008BAF90 /* row.wav */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +259,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B1C60CE25A988FD008BAF90 /* row.wav in Resources */,
+				3B1C60CD25A988FD008BAF90 /* high.wav in Resources */,
 				3B1C60B725A881E5008BAF90 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

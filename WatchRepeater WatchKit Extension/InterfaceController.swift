@@ -7,7 +7,7 @@
 
 import WatchKit
 import Foundation
-//import AudioToolbox
+import AVFoundation
 
 class InterfaceController: WKInterfaceController {
 
@@ -20,7 +20,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     override func willActivate() {
-
+      
     }
     
     override func didDeactivate() {
@@ -30,6 +30,7 @@ class InterfaceController: WKInterfaceController {
   @IBAction func actionButton() {
     if isPlaying { return }
     isPlaying = true
+    
     
     repeater()
   }
@@ -92,6 +93,28 @@ class InterfaceController: WKInterfaceController {
       }
       
       self.isPlaying = false
+    }
+  }
+}
+
+class SoundPlayer: ObservableObject {
+  var audioPlayer = AVAudioPlayer()
+  
+  init() {
+    let lowGong = Bundle.main.path(forResource: "low", ofType: "wave")
+    do {
+      audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: lowGong!))
+    }
+    catch {
+      print("error")
+    }
+    
+    let highGong = Bundle.main.path(forResource: "high", ofType: "wave")
+    do {
+      audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: highGong!))
+    }
+    catch {
+      print("error")
     }
   }
 }
